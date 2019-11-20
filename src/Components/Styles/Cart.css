@@ -1,0 +1,26 @@
+.cart{
+  float: right;
+}
+.displayCart {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  background-color: rgb(209, 209, 255);
+  width: 400px;
+  animation: slide-in 1s;
+  z-index: 1;
+}
+@keyframes slide-in {
+  from {
+    width: 0px
+  }
+  to {
+    width: 400px;
+  }
+}
+.cartButton {
+  text-decoration: none;
+  border: none;
+  height: 30px;
+  width: 100px;
+}

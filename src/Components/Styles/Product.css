@@ -1,0 +1,17 @@
+.price::before {
+  content: "₹ ";
+}
+.productSummary {
+  display: flex;
+  flex-direction: row;
+}
+.productSummary * {
+  margin: 10px;
+}
+.productSummary .titleBlock {
+  display: inline-flex;
+  flex-direction: column;
+}
+.productSummary h3 {
+  font-size: 0.8em;
+}

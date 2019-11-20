@@ -1,0 +1,20 @@
+h1 {
+  position: relative;
+  margin-top: 40px;
+}
+.productsContainer {
+  position: relative;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.productsContainer div img{
+  height: 200px;
+  width: 200px;
+  overflow: hidden;
+}
+
+.productsContainer div{
+  width: 300px;
+}

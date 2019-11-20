@@ -1,0 +1,21 @@
+.summary {
+  display: flex;
+  flex-direction: row;
+}
+.summary button {
+  text-decoration: none;
+  border: none;
+  background-color: steelgray;
+  margin: 40px 5px;
+  height: 20px;
+  width: 20px;
+}
+.summary div img {
+  height: 100px;
+  width: 100px;
+}
+.quantity {
+  display: inline-flex;
+  line-height: 100px;
+  vertical-align: middle;
+}
