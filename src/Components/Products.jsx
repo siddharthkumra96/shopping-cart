@@ -1,9 +1,12 @@
+/* eslint-disable react/button-has-type */
+/* eslint-disable react/prop-types */
+/* eslint-disable react/destructuring-assignment */
 import React from "react";
 import { connect } from "react-redux";
 import Product from "./Product";
 import {
   addProductToCart,
-  removeProductFromCart
+  removeProductFromCart,
 } from "../store/actions/cartActions";
 import "./Styles/Products.css";
 
@@ -12,6 +15,7 @@ class Products extends React.Component {
     super(props);
     this.handleClick = this.handleClick.bind(this);
   }
+
   handleClick(type, prodid) {
     if (type === "add") {
       this.props.addProductToCart(prodid);
@@ -19,12 +23,13 @@ class Products extends React.Component {
       this.props.removeProductFromCart(prodid);
     }
   }
+
   render() {
     return (
       <div>
         <h1>Products</h1>
         <div className="productsContainer">
-          {this.props.products.map(product => (
+          {this.props.products.map((product) => (
             <div key={product.id}>
               <Product data={product} type="full" />
               <button
@@ -50,19 +55,15 @@ class Products extends React.Component {
     );
   }
 }
-const mapStateToProps = state => {
-  return {
-    products: state.products
-  };
-};
-const mapDispatchToProps = dispatch => {
-  return {
-    addProductToCart(productid) {
-      dispatch(addProductToCart(productid));
-    },
-    removeProductFromCart(productid) {
-      dispatch(removeProductFromCart(productid));
-    }
-  };
-};
+const mapStateToProps = (state) => ({
+  products: state.products,
+});
+const mapDispatchToProps = (dispatch) => ({
+  addProductToCart(productid) {
+    dispatch(addProductToCart(productid));
+  },
+  removeProductFromCart(productid) {
+    dispatch(removeProductFromCart(productid));
+  },
+});
 export default connect(mapStateToProps, mapDispatchToProps)(Products);

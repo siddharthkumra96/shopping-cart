@@ -1,3 +1,6 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/prefer-stateless-function */
+/* eslint-disable no-useless-constructor */
 import React from "react";
 import { connect } from "react-redux";
 import "./Styles/Product.css";
@@ -6,11 +9,12 @@ class Product extends React.Component {
   constructor(props) {
     super(props);
   }
+
   render() {
     const { type, id, products } = this.props;
     let { data } = this.props;
     if (id) {
-      data = products.find(product => product.id === id);
+      data = products.find((product) => product.id === id);
     }
     return (
       <div>
@@ -29,9 +33,7 @@ class Product extends React.Component {
     );
   }
 }
-const mapStateToProps = state => {
-  return {
-    products: state.products
-  };
-};
+const mapStateToProps = (state) => ({
+  products: state.products,
+});
 export default connect(mapStateToProps, null)(Product);

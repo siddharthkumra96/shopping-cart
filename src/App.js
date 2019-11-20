@@ -1,3 +1,6 @@
+/* eslint-disable no-useless-constructor */
+/* eslint-disable react/prefer-stateless-function */
+/* eslint-disable react/jsx-filename-extension */
 import React from "react";
 import "./App.css";
 import Products from "./Components/Products";
@@ -7,6 +10,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
   }
+
   render() {
     return (
       <div className="App">

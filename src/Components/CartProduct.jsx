@@ -1,10 +1,13 @@
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable react/prop-types */
+/* eslint-disable react/button-has-type */
 import React from "react";
+import { connect } from "react-redux";
 import {
   addProductToCart,
-  removeProductFromCart
+  removeProductFromCart,
 } from "../store/actions/cartActions";
 import Product from "./Product";
-import { connect } from "react-redux";
 import ProductCounter from "./ProductCounter";
 import "./Styles/CartProduct.css";
 
@@ -13,6 +16,7 @@ class CartProduct extends React.Component {
     super(props);
     this.handleClick = this.handleClick.bind(this);
   }
+
   handleClick(e) {
     const { name } = e.target;
     if (name === "add") {
@@ -21,6 +25,7 @@ class CartProduct extends React.Component {
       this.props.removeProductFromCart(this.props.productid);
     }
   }
+
   render() {
     const { productid } = this.props;
     return (
@@ -40,14 +45,12 @@ class CartProduct extends React.Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    addProductToCart(product) {
-      dispatch(addProductToCart(product));
-    },
-    removeProductFromCart(product) {
-      dispatch(removeProductFromCart(product));
-    }
-  };
-};
+const mapDispatchToProps = (dispatch) => ({
+  addProductToCart(product) {
+    dispatch(addProductToCart(product));
+  },
+  removeProductFromCart(product) {
+    dispatch(removeProductFromCart(product));
+  },
+});
 export default connect(null, mapDispatchToProps)(CartProduct);

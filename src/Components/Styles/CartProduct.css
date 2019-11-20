@@ -1,6 +1,7 @@
 .summary {
   display: flex;
   flex-direction: row;
+  width: 100%;
 }
 .summary button {
   text-decoration: none;
@@ -16,6 +17,8 @@
 }
 .quantity {
   display: inline-flex;
+  position: absolute;
+  right: 0;
   line-height: 100px;
   vertical-align: middle;
 }

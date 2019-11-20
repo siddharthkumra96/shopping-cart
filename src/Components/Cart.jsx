@@ -1,3 +1,8 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable react/button-has-type */
+/* eslint-disable no-useless-constructor */
+/* eslint-disable react/prefer-stateless-function */
 import React from "react";
 import { connect } from "react-redux";
 import CartProduct from "./CartProduct";
@@ -7,21 +12,24 @@ class Cart extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      open: false
+      open: false,
     };
     this.toggle = this.toggle.bind(this);
   }
+
   toggle() {
-    this.setState(state => ({
-      open: !state.open
+    this.setState((state) => ({
+      open: !state.open,
     }));
   }
+
   totalItemsInCart() {
     return Object.keys(this.props.cart).reduce(
       (acc, c) => acc + this.props.cart[c],
-      0
+      0,
     );
   }
+
   render() {
     const cartProducts = this.props.cart;
     return (
@@ -30,7 +38,7 @@ class Cart extends React.Component {
           <div className="displayCart">
             <button onClick={this.toggle}>Close</button>
             {Object.keys(cartProducts).length ? (
-              Object.keys(cartProducts).map(productid => (
+              Object.keys(cartProducts).map((productid) => (
                 <CartProduct key={productid} productid={productid} />
               ))
             ) : (
@@ -40,18 +48,18 @@ class Cart extends React.Component {
             )}
           </div>
         ) : (
-          <button onClick={this.toggle} class="cartButton">
-            Cart ({this.totalItemsInCart()})
+          <button onClick={this.toggle} className="cartButton">
+            Cart (
+            {this.totalItemsInCart()}
+            )
           </button>
         )}
       </div>
     );
   }
 }
-const mapStateToProps = state => {
-  return {
-    cart: state.cart
-  };
-};
+const mapStateToProps = (state) => ({
+  cart: state.cart,
+});
 
 export default connect(mapStateToProps, null)(Cart);
