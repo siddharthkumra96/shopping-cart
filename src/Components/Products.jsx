@@ -8,6 +8,11 @@ import {
   addProductToCart,
   removeProductFromCart,
 } from "../store/actions/cartActions";
+import {
+  addProductQuantity,
+  decreaseProductQuantity,
+} from "../store/actions/productActions";
+import Loader from "./Loader";
 import "./Styles/Products.css";
 
 class Products extends React.Component {
@@ -16,38 +21,58 @@ class Products extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick(type, prodid) {
+  handleClick(type, product) {
     if (type === "add") {
-      this.props.addProductToCart(prodid);
+      this.props.addProductToCart(product);
+      this.props.decreaseProductQuantity(product.id);
     } else if (type === "remove") {
-      this.props.removeProductFromCart(prodid);
+      this.props.removeProductFromCart(product.id);
+      this.props.addProductQuantity(product.id);
     }
   }
 
   render() {
+    const sortFunction = (a, b) => {
+      const x = a.title.toLowerCase();
+      const y = b.title.toLowerCase();
+      if (x < y) { return -1; }
+      if (x > y) { return 1; }
+      return 0;
+    };
+    if (this.props.loading) {
+      return <Loader />;
+    }
     return (
       <div>
         <h1>Products</h1>
         <div className="productsContainer">
-          {this.props.products.map((product) => (
+          {this.props.products.sort(sortFunction).map((product) => (
             <div key={product.id}>
               <Product data={product} type="full" />
-              <button
-                name="add"
-                onClick={() => {
-                  this.handleClick("add", product.id);
-                }}
-              >
+              {product.availableStock ? (
+                <div>
+                  <button
+                    name="add"
+                    onClick={() => {
+                      this.handleClick("add", product);
+                    }}
+                  >
                 Add
-              </button>
-              <button
-                name="add"
-                onClick={() => {
-                  this.handleClick("remove", product.id);
-                }}
-              >
+                  </button>
+                  <button
+                    name="add"
+                    onClick={() => {
+                      this.handleClick("remove", product);
+                    }}
+                  >
                 Remove
-              </button>
+                  </button>
+                  <p>
+                    Available Stock :
+                    {product.availableStock}
+                  </p>
+                </div>
+              ) : "Out of Stock!"}
             </div>
           ))}
         </div>
@@ -57,13 +82,20 @@ class Products extends React.Component {
 }
 const mapStateToProps = (state) => ({
   products: state.products,
+  loading: state.loading,
 });
 const mapDispatchToProps = (dispatch) => ({
-  addProductToCart(productid) {
-    dispatch(addProductToCart(productid));
+  addProductToCart(productId) {
+    dispatch(addProductToCart(productId));
   },
-  removeProductFromCart(productid) {
-    dispatch(removeProductFromCart(productid));
+  removeProductFromCart(productId) {
+    dispatch(removeProductFromCart(productId));
+  },
+  addProductQuantity(productId) {
+    dispatch(addProductQuantity(productId));
+  },
+  decreaseProductQuantity(productId) {
+    dispatch(decreaseProductQuantity(productId));
   },
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Products);

@@ -25,7 +25,7 @@ class Cart extends React.Component {
 
   totalItemsInCart() {
     return Object.keys(this.props.cart).reduce(
-      (acc, c) => acc + this.props.cart[c],
+      (acc, c) => acc + this.props.cart[c].count,
       0,
     );
   }
@@ -38,8 +38,8 @@ class Cart extends React.Component {
           <div className="displayCart">
             <button onClick={this.toggle}>Close</button>
             {Object.keys(cartProducts).length ? (
-              Object.keys(cartProducts).map((productid) => (
-                <CartProduct key={productid} productid={productid} />
+              Object.keys(cartProducts).map((productId) => (
+                <CartProduct key={productId} productId={productId} />
               ))
             ) : (
               <div>

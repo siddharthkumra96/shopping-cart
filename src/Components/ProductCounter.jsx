@@ -11,7 +11,7 @@ class ProductCounter extends React.Component {
 
   render() {
     const { products, id } = this.props;
-    const count = products[id];
+    const { count } = products[id];
     return <div className="counter">{count}</div>;
   }
 }

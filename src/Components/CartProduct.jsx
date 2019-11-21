@@ -7,6 +7,10 @@ import {
   addProductToCart,
   removeProductFromCart,
 } from "../store/actions/cartActions";
+import {
+  addProductQuantity,
+  decreaseProductQuantity,
+} from "../store/actions/productActions";
 import Product from "./Product";
 import ProductCounter from "./ProductCounter";
 import "./Styles/CartProduct.css";
@@ -20,22 +24,24 @@ class CartProduct extends React.Component {
   handleClick(e) {
     const { name } = e.target;
     if (name === "add") {
-      this.props.addProductToCart(this.props.productid);
+      this.props.addProductToCart(this.props.productId);
+      this.props.decreaseProductQuantity(this.props.productId);
     } else if (name === "remove") {
-      this.props.removeProductFromCart(this.props.productid);
+      this.props.removeProductFromCart(this.props.productId);
+      this.props.addProductQuantity(this.props.productId);
     }
   }
 
   render() {
-    const { productid } = this.props;
+    const { productId } = this.props;
     return (
       <div className="summary">
-        <Product id={productid} type="summary" />
+        <Product id={productId} type="summary" />
         <div className="quantity">
           <button name="add" onClick={this.handleClick}>
             +
           </button>
-          <ProductCounter id={productid} />
+          <ProductCounter id={productId} />
           <button name="remove" onClick={this.handleClick}>
             -
           </button>
@@ -46,11 +52,17 @@ class CartProduct extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  addProductToCart(product) {
-    dispatch(addProductToCart(product));
+  addProductToCart(productId) {
+    dispatch(addProductToCart(productId));
   },
-  removeProductFromCart(product) {
-    dispatch(removeProductFromCart(product));
+  removeProductFromCart(productId) {
+    dispatch(removeProductFromCart(productId));
+  },
+  addProductQuantity(productId) {
+    dispatch(addProductQuantity(productId));
+  },
+  decreaseProductQuantity(productId) {
+    dispatch(decreaseProductQuantity(productId));
   },
 });
 export default connect(null, mapDispatchToProps)(CartProduct);
