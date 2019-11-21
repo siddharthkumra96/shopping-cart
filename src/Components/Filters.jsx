@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react/button-has-type */
 /* eslint-disable react/prop-types */
 import React from "react";
@@ -38,7 +39,8 @@ class Filters extends React.Component {
     return (
       <div>
         <div>
-          <select name="sortBy" value={sortBy} onChange={this.handleChange}>
+          <label htmlFor="sortBy"> Sort By : </label>
+          <select name="sortBy" id="sortBy" value={sortBy} onChange={this.handleChange}>
             <option value="title">Name</option>
             <option value="price">Price</option>
           </select>
@@ -49,7 +51,8 @@ class Filters extends React.Component {
           <button onClick={this.handleSort}>Sort</button>
         </div>
         <div>
-          <select name="filterByPrice" value={filterByPrice} onChange={this.handleChange}>
+          <label htmlFor="filterByPrice">Filter By Price : </label>
+          <select name="filterByPrice" id="filterByPrice" value={filterByPrice} onChange={this.handleChange}>
             <option value="none">All</option>
             <option value={[0, 100]}>0 to 100</option>
             <option value={[100, 400]}>100 to 400</option>
