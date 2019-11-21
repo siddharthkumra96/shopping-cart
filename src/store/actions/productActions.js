@@ -19,9 +19,9 @@ export const addProductQuantity = (productid) => (dispatch) => {
       type: ADD_PRODUCT_QUANTITY,
       productid,
     });
-    dispatch(setLoaderFalse);
+    dispatch(setLoaderFalse());
   }, 2000);
-  dispatch(setLoaderTrue);
+  dispatch(setLoaderTrue());
 };
 export const decreaseProductQuantity = (productid) => (dispatch) => {
   setTimeout(() => {
@@ -29,7 +29,7 @@ export const decreaseProductQuantity = (productid) => (dispatch) => {
       type: DECREASE_PRODUCT_QUANTITY,
       productid,
     });
-    dispatch(setLoaderFalse);
+    dispatch(setLoaderFalse());
   }, 2000);
-  dispatch(setLoaderTrue);
+  dispatch(setLoaderTrue());
 };

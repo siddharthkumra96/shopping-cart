@@ -16,9 +16,9 @@ export const addProductToCart = (product) => (dispatch) => {
         productId: product,
       });
     }
-    dispatch(setLoaderFalse);
+    dispatch(setLoaderFalse());
   }, 2000);
-  dispatch(setLoaderTrue);
+  dispatch(setLoaderTrue());
 };
 
 export const removeProductFromCart = (productId) => ({

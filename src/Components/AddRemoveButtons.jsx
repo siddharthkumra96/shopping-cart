@@ -30,7 +30,7 @@ class AddRemoveButtons extends React.Component {
           Remove
         </button>
         <p>
-                    Available Stock :
+          Available Stock :
           {product.availableStock}
         </p>
       </div>

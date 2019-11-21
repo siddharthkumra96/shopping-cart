@@ -25,7 +25,7 @@ const productsData = [
   },
   {
     id: "4",
-    img: "http://guesseu.scene7.com/is/image/GuessEU/WC0001FMSWC-G5?wid=520&fmt=jpeg&qlt=80&op_sharpen=0&op_usm=1.0,1.0,5,0&iccEmbed=0",
+    img: "https://guesseu.scene7.com/is/image/GuessEU/WC0001FMSWC-G5?wid=520&fmt=jpeg&qlt=80&op_sharpen=0&op_usm=1.0,1.0,5,0&iccEmbed=0",
     title: "GUESS CONNECT WATCH",
     price: 438.9,
     availableStock: 5,
@@ -38,6 +38,22 @@ const productsData = [
     price: 20,
     availableStock: 1,
     totalStock: 1,
+  },
+  {
+    id: "6",
+    img: "http://img.bbystatic.com/BestBuy_US/images/products/4390/43900_sa.jpg",
+    title: "DURACELL",
+    price: 102,
+    availableStock: 3,
+    totalStock: 3,
+  },
+  {
+    id: "7",
+    img: "http://img.bbystatic.com/BestBuy_US/images/products/1073/1073077_sa.jpg",
+    title: "WHIRLPOOL REFRIGERATOR",
+    price: 5000,
+    availableStock: 2,
+    totalStock: 2,
   },
 ];
 export default productsData;
