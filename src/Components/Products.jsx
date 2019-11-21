@@ -14,6 +14,7 @@ import {
 } from "../store/actions/productActions";
 import Loader from "./Loader";
 import "./Styles/Products.css";
+import AddRemoveButtons from "./AddRemoveButtons";
 
 class Products extends React.Component {
   constructor(props) {
@@ -50,28 +51,7 @@ class Products extends React.Component {
             <div key={product.id}>
               <Product data={product} type="full" />
               {product.availableStock ? (
-                <div>
-                  <button
-                    name="add"
-                    onClick={() => {
-                      this.handleClick("add", product);
-                    }}
-                  >
-                Add
-                  </button>
-                  <button
-                    name="add"
-                    onClick={() => {
-                      this.handleClick("remove", product);
-                    }}
-                  >
-                Remove
-                  </button>
-                  <p>
-                    Available Stock :
-                    {product.availableStock}
-                  </p>
-                </div>
+                <AddRemoveButtons product={product} onClick={this.handleClick} />
               ) : "Out of Stock!"}
             </div>
           ))}
