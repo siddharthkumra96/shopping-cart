@@ -33,6 +33,7 @@ class CartProduct extends React.Component {
 
   render() {
     const { cartProduct, productId } = this.props;
+    const isProductAvailable = () => cartProduct.count <= (cartProduct.availableStock);
     return (
       <div className="summary">
         <Product id={productId} type="summary" />
@@ -41,9 +42,11 @@ class CartProduct extends React.Component {
             -
           </button>
           <ProductCounter id={productId} />
-          <button name="add" onClick={cartProduct.availableStock ? this.handleClick : null}>
-            <span className={cartProduct.availableStock ? "" : "disabled"}>+</span>
-          </button>
+          <span className={isProductAvailable() ? "" : "disabled"}>
+            <button name="add" onClick={isProductAvailable() ? this.handleClick : null}>
+              +
+            </button>
+          </span>
         </div>
         <button className="removeAllQuantities" name="removeAll" onClick={this.handleClick}> X </button>
         <div className="totalPerProduct">

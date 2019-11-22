@@ -34,7 +34,7 @@ button.removeAllQuantities {
   margin-left: 94%;
 }
 span.disabled {
- opacity: 20%;
+ opacity: 40%;
 }
 .closeButton {
   text-decoration: none;

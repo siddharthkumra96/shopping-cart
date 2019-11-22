@@ -6,7 +6,7 @@ const cartReducer = (state = {}, action) => {
   switch (action.type) {
     case ADD_TO_CART: if (state[productId]) {
       let { count } = state[productId];
-      if (count < state[productId].availableStock) {
+      if (count <= state[productId].availableStock) {
         count += 1;
         return { ...state, [productId]: { ...state[productId], count } };
       }
