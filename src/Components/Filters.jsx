@@ -7,9 +7,9 @@ class Filters extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      sortBy: "title",
-      order: "asc",
+      sortBy: "title asc",
       filterByPrice: "none",
+      filterBySize: "none",
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSort = this.handleSort.bind(this);
@@ -17,48 +17,78 @@ class Filters extends React.Component {
   }
 
   handleChange(e) {
-    this.setState({
-      [e.target.name]: e.target.value,
-    });
+    let state;
+    switch (e.target.name) {
+      case "sortBy": this.handleSort(e.target.value);
+        state = {
+          [e.target.name]: e.target.value,
+        };
+        break;
+      case "filterByPrice": this.handleFilter(e.target.name, e.target.value);
+        state = {
+          [e.target.name]: e.target.value,
+        };
+        break;
+      case "filterBySize": this.handleFilter(e.target.name, e.target.value);
+        state = {
+          [e.target.name]: e.target.value,
+        };
+        break;
+      case "reset": this.handleFilter(e.target.name);
+        state = {
+          filterByPrice: "none",
+          filterBySize: "none",
+        };
+        break;
+      default: break;
+    }
+    this.setState(state);
   }
 
-  handleSort() {
-    const { sortBy, order } = this.state;
+  handleSort(originalSortBy) {
     const { sortHandler } = this.props;
+    const [sortBy, order] = originalSortBy.split(" ");
     sortHandler(sortBy, order);
   }
 
-  handleFilter() {
-    const { filterByPrice } = this.state;
+  handleFilter(type, filterValues) {
     const { filterHandler } = this.props;
-    filterHandler(filterByPrice);
+    filterHandler(filterValues, type);
   }
 
   render() {
-    const { sortBy, order, filterByPrice } = this.state;
+    const { sortBy, filterByPrice, filterBySize } = this.state;
     return (
-      <div>
-        <div>
+      <div className="filterContainer">
+        <div className="filterLabel">
           <label htmlFor="sortBy"> Sort By : </label>
-          <select name="sortBy" id="sortBy" value={sortBy} onChange={this.handleChange}>
-            <option value="title">Name</option>
-            <option value="price">Price</option>
-          </select>
-          <select name="order" value={order} onChange={this.handleChange}>
-            <option value="asc">Ascending</option>
-            <option value="desc">Descending</option>
-          </select>
-          <button onClick={this.handleSort}>Sort</button>
         </div>
-        <div>
+        <select name="sortBy" id="sortBy" value={sortBy} onChange={this.handleChange}>
+          <option value="title asc">Name (A to Z)</option>
+          <option value="title desc">Name (Z to A)</option>
+          <option value="price asc">Price (Lowest First)</option>
+          <option value="price desc">Price (Highest First)</option>
+        </select>
+        <div className="filterLabel">
           <label htmlFor="filterByPrice">Filter By Price : </label>
-          <select name="filterByPrice" id="filterByPrice" value={filterByPrice} onChange={this.handleChange}>
-            <option value="none">All</option>
-            <option value={[0, 100]}>0 to 100</option>
-            <option value={[100, 400]}>100 to 400</option>
-            <option value={[400, 100000]}>400+</option>
-          </select>
-          <button onClick={this.handleFilter}>Filter</button>
+        </div>
+        <select name="filterByPrice" id="filterByPrice" value={filterByPrice} onChange={this.handleChange}>
+          <option value="none">All</option>
+          <option value={[0, 100]}>0 to 100</option>
+          <option value={[100, 400]}>100 to 400</option>
+          <option value={[400, 100000]}>400+</option>
+        </select>
+        <div className="filterLabel">
+          <label htmlFor="filterBySize">Filter By Size : </label>
+        </div>
+        <select name="filterBySize" id="filterBySize" value={filterBySize} onChange={this.handleChange}>
+          <option value="none">All</option>
+          <option value="S">S</option>
+          <option value="M">M</option>
+          <option value="L">L</option>
+        </select>
+        <div className="filterLabel">
+          <button onClick={this.handleChange} name="reset">Reset Filters</button>
         </div>
       </div>
     );

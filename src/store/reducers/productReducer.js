@@ -17,7 +17,7 @@ const productReducer = (state = productsData, action) => {
       newProduct = state.find((product) => product.id === action.productid);
       if (newProduct && newProduct.availableStock < newProduct.totalStock) {
         const newState = state.filter((product) => product.id !== newProduct.id);
-        newProduct.availableStock += 1;
+        newProduct.availableStock += action.count;
         return [...newState, newProduct];
       }
       return state;

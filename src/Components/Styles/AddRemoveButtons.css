@@ -1,0 +1,31 @@
+.addRemoveButtons {
+  display: flex;
+  width: 100%;
+}
+.addRemoveButtons button {
+  text-decoration: none;
+  border: none;
+  width: 100%;
+  padding: 10px 20px;
+  margin: 10px 10px;
+  background-color: gold;
+  color: black;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+.addRemoveButtons button:hover {
+  color: gold;
+  background-color: black;
+  cursor: pointer;
+}
+.availableStock {
+  font-style: italic;
+  font-size: 0.8em;
+  margin-bottom: 15px;
+}
+.availableStock::before{
+  content:"(";
+}
+.availableStock::after{
+  content:")";
+}

@@ -6,6 +6,7 @@ const productsData = [
     price: 110,
     availableStock: 5,
     totalStock: 5,
+    size: "L",
   },
   {
     id: "2",
@@ -14,6 +15,7 @@ const productsData = [
     price: 91,
     availableStock: 5,
     totalStock: 5,
+    size: "S",
   },
   {
     id: "3",
@@ -22,6 +24,7 @@ const productsData = [
     price: 94.5,
     availableStock: 5,
     totalStock: 5,
+    size: "M",
   },
   {
     id: "4",
@@ -30,6 +33,7 @@ const productsData = [
     price: 438.9,
     availableStock: 5,
     totalStock: 5,
+    size: "L",
   },
   {
     id: "5",
@@ -38,6 +42,7 @@ const productsData = [
     price: 20,
     availableStock: 1,
     totalStock: 1,
+    size: "S",
   },
   {
     id: "6",
@@ -46,6 +51,7 @@ const productsData = [
     price: 102,
     availableStock: 3,
     totalStock: 3,
+    size: "L",
   },
   {
     id: "7",
@@ -54,6 +60,7 @@ const productsData = [
     price: 5000,
     availableStock: 2,
     totalStock: 2,
+    size: "M",
   },
 ];
 export default productsData;

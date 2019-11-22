@@ -9,9 +9,10 @@ class Loader extends React.Component {
   }
 
   render() {
+    const { type } = this.props;
     return (
       <div className="mainContainer">
-        <div className="loader" />
+        <div className={`loader ${type === "small" ? "small" : ""}`} />
       </div>
     );
   }

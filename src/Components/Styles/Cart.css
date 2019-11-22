@@ -1,11 +1,13 @@
-.cart{
-  float: right;
+.cart {
+  width: 100%;
+  height: 30px;
+  z-index:0;
 }
 .displayCart {
   position: absolute;
-  top: 0px;
+  top: 30px;
   right: 0px;
-  background-color: rgb(209, 209, 255);
+  background-color: lightgoldenrodyellow;
   width: 400px;
   animation: slide-in 1s;
   z-index: 1;
@@ -18,9 +20,84 @@
     width: 400px;
   }
 }
+@keyframes slide-out {
+  from {
+    width: 400px
+  }
+  to {
+    width: 0px;
+  }
+}
+.hideCart {
+  position: absolute;
+  top: 30px;
+  right: 0px;
+  background-color: lightgoldenrodyellow;
+  width: 400px;
+  animation: slide-out 1s;
+}
+.hideCart *{
+  display: none;
+}
 .cartButton {
   text-decoration: none;
   border: none;
   height: 30px;
+  float: right;
   width: 100px;
+}
+.loaderContainer {
+  height: 400px;
+}
+.netTotal {
+  display: flex;
+  flex-direction: row;
+  background-color: gray;
+  min-height: 30px;
+}
+.subtotal {
+  color: gold;
+  background-color: black;
+  padding: 5%;
+  width: 100%;
+  font-weight: bold;
+}
+.subtotal:hover {
+  color: gray;
+  background-color: gold;
+}
+.totalItems {
+  color: gold;
+  background-color: black;
+  width: 100%;
+  padding: 5%;
+  font-style: italic;
+}
+.grossTotal {
+  display: flex;
+  color: black;
+  background-color: gold;
+}
+.grossTotal .taxContainer {
+  display: flex;
+  flex-direction: row;
+  width: 50%;
+}
+.grossTotal .taxContainer :nth-child(even){
+  padding-top: 3%;
+  background-color: black;
+  color: gold;
+}
+.grossTotal .total {
+  font-weight: bold;
+  width: 50%;
+  line-height: 50px;
+}
+.grossTotal .total:hover {
+  border-top: 2px solid red;
+  border-bottom: 2px solid red;
+}
+.grossTotal label::after{
+  content : "\A";
+  white-space: pre;
 }

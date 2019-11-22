@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  min-height: 100%;
 }
 .header {
   display: block;
@@ -7,4 +8,5 @@
   top: 0px;
   width: 100%;
   background-color: grey;
+  z-index:1;
 }

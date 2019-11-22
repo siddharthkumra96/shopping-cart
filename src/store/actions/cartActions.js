@@ -27,12 +27,13 @@ export const addProductToCart = (product) => (dispatch) => {
   dispatch(setLoaderTrue());
 };
 
-export const removeProductFromCart = (productId) => (dispatch) => {
+export const removeProductFromCart = ([productId, count]) => (dispatch) => {
   setTimeout(() => {
-    dispatch(addProductQuantity(productId));
+    dispatch(addProductQuantity(productId, count || 1));
     dispatch({
       type: REMOVE_FROM_CART,
       productId,
+      count: count || 1,
     });
     dispatch(setLoaderFalse());
   }, 2000);

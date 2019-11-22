@@ -14,12 +14,12 @@ const cartReducer = (state = {}, action) => {
     }
       return {
         ...state,
-        [productId]: { count: 1, availableStock: action.product.availableStock },
+        [productId]: { count: 1, availableStock: action.product.availableStock, price: action.product.price },
       };
 
     case REMOVE_FROM_CART: if (state[productId]) {
       let { count } = state[productId];
-      count -= 1;
+      count -= action.count;
       if (count === 0) {
         const newState = { ...state };
         delete newState[productId];
@@ -28,6 +28,7 @@ const cartReducer = (state = {}, action) => {
       return { ...state, [productId]: { ...state[productId], count } };
     }
       return state;
+
     default: return state;
   }
 };

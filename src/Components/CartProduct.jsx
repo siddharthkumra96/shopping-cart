@@ -11,6 +11,7 @@ import Product from "./Product";
 import ProductCounter from "./ProductCounter";
 import "./Styles/CartProduct.css";
 
+
 class CartProduct extends React.Component {
   constructor(props) {
     super(props);
@@ -19,26 +20,34 @@ class CartProduct extends React.Component {
 
   handleClick(e) {
     const { name } = e.target;
-    if (name === "add") {
-      this.props.addProductToCart(this.props.productId);
-    } else if (name === "remove") {
-      this.props.removeProductFromCart(this.props.productId);
+    switch (name) {
+      case "add": this.props.addProductToCart(this.props.productId);
+        break;
+      case "remove": this.props.removeProductFromCart([this.props.productId]);
+        break;
+      case "removeAll": this.props.removeProductFromCart([this.props.productId, this.props.cartProduct.count]);
+        break;
+      default: break;
     }
   }
 
   render() {
-    const { productId } = this.props;
+    const { cartProduct, productId } = this.props;
     return (
       <div className="summary">
         <Product id={productId} type="summary" />
         <div className="quantity">
-          <button name="add" onClick={this.handleClick}>
-            +
-          </button>
-          <ProductCounter id={productId} />
           <button name="remove" onClick={this.handleClick}>
             -
           </button>
+          <ProductCounter id={productId} />
+          <button name="add" onClick={this.handleClick}>
+            +
+          </button>
+        </div>
+        <button className="removeAllQuantities" name="removeAll" onClick={this.handleClick}> X </button>
+        <div className="totalPerProduct">
+          {` ₹ ${cartProduct.price} x ${cartProduct.count} = ₹ ${cartProduct.count * cartProduct.price}` }
         </div>
       </div>
     );

@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable react/prop-types */
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/button-has-type */
@@ -7,6 +8,7 @@ import React from "react";
 import { connect } from "react-redux";
 import CartProduct from "./CartProduct";
 import "./Styles/Cart.css";
+import Loader from "./Loader";
 
 class Cart extends React.Component {
   constructor(props) {
@@ -14,13 +16,21 @@ class Cart extends React.Component {
     this.state = {
       open: false,
     };
+    this.tax = 5;
     this.toggle = this.toggle.bind(this);
+    this.handleTaxCheckbox = this.handleTaxCheckbox.bind(this);
   }
 
-  toggle() {
-    this.setState((state) => ({
-      open: !state.open,
-    }));
+  getTotalCartValue() {
+    return Object.keys(this.props.cart).reduce(
+      (acc, c) => acc + (this.props.cart[c].count * this.props.cart[c].price),
+      0,
+    );
+  }
+
+  getGrossTotal() {
+    const subtotal = this.getTotalCartValue();
+    return this.state.taxCheckbox ? Math.round(subtotal + ((this.tax / 100) * subtotal)) : subtotal;
   }
 
   totalItemsInCart() {
@@ -30,36 +40,89 @@ class Cart extends React.Component {
     );
   }
 
+  toggle() {
+    this.setState((state) => ({
+      open: !state.open,
+      taxCheckbox: false,
+    }));
+  }
+
+  handleTaxCheckbox() {
+    this.setState((state) => ({
+      taxCheckbox: !state.taxCheckbox,
+    }));
+  }
+
   render() {
     const cartProducts = this.props.cart;
     return (
       <div className="cart">
-        {this.state.open ? (
-          <div className="displayCart">
-            <button onClick={this.toggle}>Close</button>
-            {Object.keys(cartProducts).length ? (
-              Object.keys(cartProducts).map((productId) => (
-                <CartProduct key={productId} productId={productId} />
-              ))
+        <div className={this.state.open ? "displayCart" : "hideCart"}>
+          <button onClick={this.toggle}>Close</button>
+          {this.props.loading
+            ? (
+              <div className="loaderContainer">
+                <Loader type="small" />
+              </div>
+            ) : Object.keys(cartProducts).length ? (
+              <div>
+                {Object.keys(cartProducts).map((productId) => (
+                  <CartProduct
+                    key={productId}
+                    cartProduct={cartProducts[productId]}
+                    productId={productId}
+                  />
+                ))}
+                <div className="netTotal">
+                  <div className="totalItems">
+                      Total Items in Cart :
+                    {" "}
+                    {this.totalItemsInCart()}
+                  </div>
+                  <div className="subtotal">
+                      SUBTOTAL : ₹
+                    {" "}
+                    {this.getTotalCartValue()}
+                  </div>
+                </div>
+                <div className="grossTotal">
+                  <div className="taxContainer">
+                    <div>
+                      <label htmlFor="taxCheckbox"> Include Tax Amount ?</label>
+                      <input className="taxCheckbox" type="checkbox" id="taxCheckbox" checked={this.state.taxCheckbox} onChange={this.handleTaxCheckbox} />
+                    </div>
+                    <div>
+                      Tax Rate
+                      {" "}
+                      {this.tax}
+                      %
+                    </div>
+                  </div>
+                  <div className="total">
+                    TOTAL : ₹
+                    {" "}
+                    {this.getGrossTotal()}
+                  </div>
+                </div>
+              </div>
             ) : (
               <div>
                 <p>Nothing added to cart yet!</p>
               </div>
             )}
-          </div>
-        ) : (
-          <button onClick={this.toggle} className="cartButton">
+        </div>
+        <button onClick={this.toggle} className="cartButton">
             Cart (
-            {this.totalItemsInCart()}
+          {this.totalItemsInCart()}
             )
-          </button>
-        )}
+        </button>
       </div>
     );
   }
 }
 const mapStateToProps = (state) => ({
   cart: state.cart,
+  loading: state.loading,
 });
 
 export default connect(mapStateToProps, null)(Cart);
