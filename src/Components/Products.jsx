@@ -8,10 +8,6 @@ import {
   addProductToCart,
   removeProductFromCart,
 } from "../store/actions/cartActions";
-import {
-  addProductQuantity,
-  decreaseProductQuantity,
-} from "../store/actions/productActions";
 import Loader from "./Loader";
 import "./Styles/Products.css";
 import AddRemoveButtons from "./AddRemoveButtons";
@@ -40,10 +36,8 @@ class Products extends React.Component {
   handleClick(type, product) {
     if (type === "add") {
       this.props.addProductToCart(product);
-      this.props.decreaseProductQuantity(product.id);
     } else if (type === "remove") {
       this.props.removeProductFromCart(product.id);
-      this.props.addProductQuantity(product.id);
     }
   }
 
@@ -105,12 +99,6 @@ const mapDispatchToProps = (dispatch) => ({
   },
   removeProductFromCart(productId) {
     dispatch(removeProductFromCart(productId));
-  },
-  addProductQuantity(productId) {
-    dispatch(addProductQuantity(productId));
-  },
-  decreaseProductQuantity(productId) {
-    dispatch(decreaseProductQuantity(productId));
   },
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Products);

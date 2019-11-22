@@ -7,10 +7,6 @@ import {
   addProductToCart,
   removeProductFromCart,
 } from "../store/actions/cartActions";
-import {
-  addProductQuantity,
-  decreaseProductQuantity,
-} from "../store/actions/productActions";
 import Product from "./Product";
 import ProductCounter from "./ProductCounter";
 import "./Styles/CartProduct.css";
@@ -25,10 +21,8 @@ class CartProduct extends React.Component {
     const { name } = e.target;
     if (name === "add") {
       this.props.addProductToCart(this.props.productId);
-      this.props.decreaseProductQuantity(this.props.productId);
     } else if (name === "remove") {
       this.props.removeProductFromCart(this.props.productId);
-      this.props.addProductQuantity(this.props.productId);
     }
   }
 
@@ -57,12 +51,6 @@ const mapDispatchToProps = (dispatch) => ({
   },
   removeProductFromCart(productId) {
     dispatch(removeProductFromCart(productId));
-  },
-  addProductQuantity(productId) {
-    dispatch(addProductQuantity(productId));
-  },
-  decreaseProductQuantity(productId) {
-    dispatch(decreaseProductQuantity(productId));
   },
 });
 export default connect(null, mapDispatchToProps)(CartProduct);
