@@ -42,11 +42,11 @@ class CartProduct extends React.Component {
             -
           </button>
           <ProductCounter id={productId} />
-          <span className={isProductAvailable() ? "" : "disabled"}>
+          <div className={isProductAvailable() ? "" : "disabled"}>
             <button name="add" onClick={isProductAvailable() ? this.handleClick : null}>
               +
             </button>
-          </span>
+          </div>
         </div>
         <button className="removeAllQuantities" name="removeAll" onClick={this.handleClick}> X </button>
         <div className="totalPerProduct">
