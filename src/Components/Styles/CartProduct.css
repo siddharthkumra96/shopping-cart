@@ -33,3 +33,21 @@ button.removeAllQuantities {
   margin-top: 1%;
   margin-left: 94%;
 }
+span.disabled {
+ opacity: 20%;
+}
+.closeButton {
+  text-decoration: none;
+  border: none;
+  height: 30px;
+  width: 100px;
+  background-color: gold;
+  font-weight: bold;
+  font-size: 0.8em; 
+  text-transform: uppercase;
+}
+.closeButton:hover {
+  background-color: black;
+  color: gold;
+  cursor: pointer;
+}

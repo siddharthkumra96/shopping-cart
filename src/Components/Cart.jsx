@@ -58,7 +58,7 @@ class Cart extends React.Component {
     return (
       <div className="cart">
         <div className={this.state.open ? "displayCart" : "hideCart"}>
-          <button onClick={this.toggle}>Close</button>
+          <button onClick={this.toggle} className="closeButton">Close</button>
           {this.props.loading
             ? (
               <div className="loaderContainer">
@@ -89,7 +89,7 @@ class Cart extends React.Component {
                   <div className="taxContainer">
                     <div>
                       <label htmlFor="taxCheckbox"> Include Tax Amount ?</label>
-                      <input className="taxCheckbox" type="checkbox" id="taxCheckbox" checked={this.state.taxCheckbox} onChange={this.handleTaxCheckbox} />
+                      <input type="checkbox" id="taxCheckbox" onChange={this.handleTaxCheckbox} />
                     </div>
                     <div>
                       Tax Rate
