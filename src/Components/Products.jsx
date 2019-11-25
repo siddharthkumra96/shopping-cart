@@ -69,7 +69,7 @@ class Products extends React.Component {
             filterHandler={this.handleFilterFunction}
           />
         </div>
-        {this.props.loading ? <div className=""><Loader /></div> : (
+        {this.props.loading ? <div><Loader /></div> : (
           <div>
             <div className="productsHeading"><h1>Products</h1></div>
             <div className="productsContainer">
