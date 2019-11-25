@@ -76,7 +76,7 @@ class Filters extends React.Component {
           <option value="none">All</option>
           <option value={[0, 100]}>0 to 100</option>
           <option value={[100, 400]}>100 to 400</option>
-          <option value={[400, 100000]}>400+</option>
+          <option value={[400, Infinity]}>400+</option>
         </select>
         <div className="filterLabel">
           <label htmlFor="filterBySize">Filter By Size : </label>

@@ -46,8 +46,8 @@ class Products extends React.Component {
       switch (type) {
         case "filterByPrice": {
           const filterRange = filterValues.split(",");
-          filterFunction = (product) => product.price >= parseInt(filterRange[0], 10)
-            && product.price <= parseInt(filterRange[1], 10);
+          filterFunction = (product) => product.price >= parseFloat(filterRange[0])
+            && product.price <= parseFloat(filterRange[1]);
         }
           break;
         case "filterBySize": filterFunction = (product) => product.size === filterValues;

@@ -75,8 +75,3 @@ h1 {
   font-weight: bold;
   cursor: pointer;
 }
-.productsLoadingContainer {
-  max-width: 80%;
-  max-height: 50%;
-  background-color: black;
-}
